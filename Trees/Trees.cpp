@@ -15,8 +15,9 @@ struct node {
 
 class BST
 {
-
-public :
+private:
+	node* root;
+	
 	node * createNode(int data)
 	{
 		node* n1 = new node();
@@ -26,20 +27,37 @@ public :
 		return n1;
 
 	}
-	void insertNode(node* temp,int data)
+	void searchLocation(node* temp,int key)
 	{
-		if (temp->data < data)
+		if (temp->data > key)
 		{
-			if (temp->data == NULL)
+			if (temp->left == NULL)
 			{
-				node* new_node = this->createNode(data);
+				node* new_node = this->createNode(key);
 				temp->left = new_node;
+				cout<<endl;
 			}
 			else
-				insertNode(temp->left, data);
+				searchLocation(temp->left, key);
 		}
-		
-		
+		else
+		{
+			cout << "Not coded for this situation yet"<<endl;
+		}
+	}
+public :
+	BST(int data)
+	{
+		root = createNode(data);
+	}
+
+
+	void insertNode(int data)
+	{
+		node* temp = root;
+		searchLocation(root, data);
+		cout << "Node inserted" << endl;
+
 
 	}
 };
@@ -128,6 +146,9 @@ int main()
 	insertNode(root, 301);
 
 	inorder(root);
-	
+	BST bst_node(5);
+	bst_node.insertNode(1);
+	cout << "\nHere";
+
 }
 
