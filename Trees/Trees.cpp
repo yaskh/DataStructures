@@ -3,13 +3,51 @@
 
 #include <iostream>
 #include <queue>
+
 using namespace std;
+
 struct node {
 	int data;
 	node* left;
 	node* right;
 
 };
+
+class BST
+{
+
+public :
+	node * createNode(int data)
+	{
+		node* n1 = new node();
+		n1->data = data;
+		n1->left = NULL;
+		n1->right = NULL;
+		return n1;
+
+	}
+	void insertNode(node* temp,int data)
+	{
+		if (temp->data < data)
+		{
+			if (temp->data == NULL)
+			{
+				node* new_node = this->createNode(data);
+				temp->left = new_node;
+			}
+			else
+				insertNode(temp->left, data);
+		}
+		
+		
+
+	}
+};
+
+
+
+
+
 
 node* createNode(int data)
 {
@@ -56,14 +94,24 @@ void insertNode(node* root,int data)
 	
 }
 
-void inorder (node* temp)
+void inorder (node* root)
 {
-	if (temp == NULL)
+	if (root == NULL)
 		return;
 
-	inorder(temp->left);
-	cout << temp->data << " \t";
-	inorder(temp->right);
+	inorder(root->left);
+	cout << root->data << " \t";
+	inorder(root->right);
+}
+
+void preorder(node * root)
+{
+	if (root == NULL)
+	{
+		cout << root->data;
+		return;
+	}
+
 }
 
 
@@ -80,7 +128,6 @@ int main()
 	insertNode(root, 301);
 
 	inorder(root);
-
-
+	
 }
 
