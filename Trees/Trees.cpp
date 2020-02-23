@@ -40,9 +40,16 @@ private:
 			else
 				searchLocation(temp->left, key);
 		}
-		else
+		if (temp->data < key)
 		{
-			cout << "Not coded for this situation yet"<<endl;
+			if (temp->right == NULL)
+			{
+				node* new_node = this->createNode(key);
+				temp->right = new_node;
+				cout << endl;
+			}
+			else
+				searchLocation(temp->right, key);
 		}
 	}
 public :
@@ -146,8 +153,14 @@ int main()
 	insertNode(root, 301);
 
 	inorder(root);
-	BST bst_node(5);
+	BST bst_node(10);
 	bst_node.insertNode(1);
+	bst_node.insertNode(11);
+	bst_node.insertNode(22);
+	bst_node.insertNode(4);
+	bst_node.insertNode(5);
+	bst_node.insertNode(50);
+
 	cout << "\nHere";
 
 }
